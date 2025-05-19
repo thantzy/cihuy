@@ -1,0 +1,213 @@
+/* Reset & Background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  background: radial-gradient(#1e1e2f, #0f0f1f);
+  color: #fff;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 30, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background: #222;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  animation: popIn 0.7s ease-out;
+  box-shadow: 0 0 30px #ff8a65;
+}
+
+.modal-content h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #ffccbc;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+.modal-content button {
+  background: #ff7043;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal-content button:hover {
+  background: #ffab91;
+}
+
+/* Typewriter Text */
+.typewriter {
+  border-right: .15em solid orange;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(40, end) forwards;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Main Content */
+.main {
+  text-align: center;
+  position: absolute;
+  top: 35%;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.glow {
+  font-size: 2.5em;
+  text-shadow: 0 0 10px #ff6, 0 0 20px #ff9;
+  animation: fadeIn 2s ease-out;
+}
+
+.tagline {
+  font-size: 1.2em;
+  margin-top: 15px;
+  opacity: 0.9;
+  animation: fadeIn 3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Cake Style */
+.cake {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 60px;
+  opacity: 1;
+  z-index: 10;
+}
+
+/* Confetti */
+#confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Intro Screen */
+.intro-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(#000, #111);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  /* Tidak ada fade-out otomatis disini, hanya saat klik tombol */
+}
+
+.intro-content {
+  text-align: center;
+}
+
+.intro-line {
+  font-size: 2.2em;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: showLine 1s forwards;
+}
+
+@keyframes showLine {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error Message */
+.error-msg {
+  color: #ff6b6b;
+  margin-top: 10px;
+  font-weight: bold;
+  animation: shake 0.3s ease;
+  visibility: hidden; /* Default is hidden */
+  opacity: 0; /* Default is invisible */
+  transition: opacity 0.5s ease;
+}
+
+/* Styling for Input Field */
+#nameInput {
+  padding: 10px 15px;
+  font-size: 1.2em;
+  width: 60%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  border: 2px solid #ff7043;
+  border-radius: 8px;
+  background: #2c2c3d;
+  color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+#nameInput:focus {
+  border-color: #ffab91;
+  outline: none;
+}
+
+/* Start Button */
+#startBtn {
+  padding: 12px 25px;
+  background: #ff7043;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#startBtn:hover {
+  background: #ffab91;
+}
