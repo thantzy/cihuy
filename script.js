@@ -3,6 +3,25 @@ const modal = document.getElementById("modal");
 const main = document.querySelector(".main");
 const music = document.getElementById("music");
 const cake = document.getElementById("cake");
+  music.play();
+
+const openLetterButton = document.getElementById('openLetter');
+const letterModal = document.getElementById('letterModal');
+const closeLetterButton = document.getElementById('closeLetter');
+
+openLetterButton.addEventListener('click', () => {
+  letterModal.classList.add('show');  // Menampilkan surat
+});
+
+closeLetterButton.addEventListener('click', () => {
+  letterModal.classList.remove('show');  // Menyembunyikan surat
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === letterModal) {
+    letterModal.classList.remove('show');  // Menyembunyikan surat jika klik di luar surat
+  }
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById("intro");
@@ -12,37 +31,41 @@ window.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startBtn");
   const errorMsg = document.getElementById("errorMsg");
 
-  // Pastikan tidak ada yang terlihat selain intro saat awal
+  // Tampilkan hanya intro di awal
   intro.style.display = "flex";
   modal.style.display = "none";
   main.classList.add("hidden");
 
-startBtn.addEventListener("click", () => {
-  const inputName = nameInput.value.trim().toUpperCase();
+  startBtn.addEventListener("click", () => {
+    // Ambil posisi tombol untuk efek ledakan
+    const rect = startBtn.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    createExplosion(centerX, centerY);
 
-  if (inputName === "ENGGAR") {
-    // Nama cocok, lanjut ke modal
-    intro.style.display = "none";
-    modal.style.display = "flex";
-    errorMsg.textContent = "";
-    errorMsg.style.visibility = "hidden";
+    const inputName = nameInput.value.trim().toUpperCase();
 
-    // Isi nama di halaman utama
-    document.querySelector(".glow").textContent = `Happy Birthday ${inputName} 🥳`;
-    document.querySelector(".modal-content h2").textContent = `🎉 ${inputName}, HALLOOO?🎉`;
-  } else {
-    // Nama salah, tampilkan error
-    errorMsg.textContent = "🚫 Nononono, Selain Enggar Nonono. Gak boleh masuk!";
-    errorMsg.style.visibility = "visible";
-    errorMsg.style.opacity = "1";
-    modal.style.display = "none";
-    main.classList.add("hidden");
-  }
+    if (inputName === "ENGGAR") {
+
+      intro.style.display = "none";
+      modal.style.display = "flex";
+      errorMsg.textContent = "";
+      errorMsg.style.visibility = "hidden";
+
+      // Update nama di tampilan
+      document.querySelector(".glow").textContent = `Happy Birthday ${inputName} 🥳`;
+      document.querySelector(".modal-content h2").textContent = `🎉 ${inputName}, HALLOOO?🎉`;
+    } else {
+      errorMsg.textContent = "🚫 Nononono, Gak boleh masuk!";
+      errorMsg.style.visibility = "visible";
+      errorMsg.style.opacity = "1";
+      modal.style.display = "none";
+      main.classList.add("hidden");
+    }
+  });
 });
 
-});
-
-// Confetti setup
+// Confetti
 const confettiCanvas = document.getElementById("confetti");
 const ctx = confettiCanvas.getContext("2d");
 confettiCanvas.width = window.innerWidth;
@@ -92,12 +115,12 @@ function launchConfetti() {
   setInterval(drawConfetti, 30);
 }
 
-// Kue jatuh ala Python
+// Animasi kue jatuh
 function dropCakePythonic() {
   let y = -100;
 
   function animate() {
-    y += 5; // mirip per frame di Python
+    y += 5;
     cake.style.top = y + "px";
 
     if (y < window.innerHeight / 2) {
@@ -108,12 +131,39 @@ function dropCakePythonic() {
   animate();
 }
 
-// Mulai perayaan
+// Mulai pesta
 btn.addEventListener("click", () => {
   modal.style.display = "none";
   main.classList.remove("hidden");
-  music.play();
   launchConfetti();
   dropCakePythonic();
 });
 
+// ==== LEDAKAN EFEK ====
+
+function createExplosion(x, y, count = 20) {
+  const container = document.getElementById("explosion-container");
+
+  for (let i = 0; i < count; i++) {
+    const particle = document.createElement("div");
+    particle.className = "particle";
+
+    const angle = Math.random() * 2 * Math.PI;
+    const radius = Math.random() * 80;
+
+    const dx = Math.cos(angle) * radius + "px";
+    const dy = Math.sin(angle) * radius + "px";
+
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    particle.style.setProperty("--x", dx);
+    particle.style.setProperty("--y", dy);
+    particle.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+    container.appendChild(particle);
+
+    setTimeout(() => {
+      container.removeChild(particle);
+    }, 600);
+  }
+}
