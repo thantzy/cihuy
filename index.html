@@ -7,14 +7,15 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<audio id="music" src="fav.mp3" loop></audio>
 
 <!-- Intro Screen with Input -->
 <div id="intro" class="intro-screen">
   <div class="intro-content">
-    <h1 class="intro-line" id="line1">Masukkan Nama Kamu</h1>
-    <input type="text" id="nameInput" placeholder="Nama..." />
+    <h1 class="intro-line" id="line1">Masukkin nama duluuu...</h1>
+    <input type="text" id="nameInput" placeholder="Masukkin nama disini !!!" />
     <p class="error-msg" id="errorMsg">Nama yang benar hanya "Enggar"</p>
-    <button id="startBtn">Mulai 🎉</button>
+    <button id="startBtn">Lanjut 🎉</button>
   </div>
 </div>
 
@@ -24,16 +25,38 @@
 <div id="modal" class="modal">
   <div class="modal-content">
     <h2>Apa nih</h2>
-    <p class="typewriter">Pusing ga akuntansi? KWKWKWKWKWKW</p>
+    <p class="typewriter">HALOOO. SEMANGATTTT YAAAAAA, <br> GABOLEE CAPE-CAPE TERUSSSSS, NANTI ATIT PERUTNYAAAAA !</p>
     <button id="celebrateBtn">Pencet Woi 🎉</button>
   </div>
 </div>
 
 <!-- Main Content -->
 <div class="main hidden">
-  <h1 class="glow">Happy Birthday Garrrrr 🥳</h1>
+  <h1 class="glow">Happy Birthday yaaaa 🥳</h1>
   <p class="tagline delay">Semoga panjang umur, sehat selalu. Hamsternya jangan mokad WKWK</p>
   <p class="tagline delay2">from: SIAPA KEK 👀</p>
+
+<div class="envelope-container">
+  <div class="envelope" id="openLetter">
+    <span class="envelope-icon">💌</span> Buka Surat
+  </div>
+</div>
+
+<!-- Letter Modal -->
+<div id="letterModal" class="letter-modal hidden">
+  <div class="letter-content">
+    <span class="close-letter" id="closeLetter">&times;</span>
+    <h2>SURAT ONLINE?? HAHA✨</h2>
+    <p>
+      Hai Enggarrrr! <br><br>
+      Semangat terus yaa walaupun tugas numpuk, Ulangan sulitttt sedikit. <br><br>
+      Jangan bosennn chat ke gw yaaakk, walaupun ngeselin dikit ... tapi gak typo xixixi <br>
+      semogaaa panjang umurrr, sehat selaluuu, dannn makin cantik WKWKWKWKWKWK <br><br>
+      - Than 
+    </p>
+  </div>
+</div>
+
 </div>
 
 <!-- Cake -->
@@ -41,7 +64,7 @@
 
 <canvas id="confetti"></canvas>
 
-<audio id="music" src="happy-birthday.mp3" loop></audio>
+<div id="explosion-container"></div>
 
 <script src="script.js"></script>
 </body>
