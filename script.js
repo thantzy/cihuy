@@ -3,7 +3,6 @@ const modal = document.getElementById("modal");
 const main = document.querySelector(".main");
 const music = document.getElementById("music");
 const cake = document.getElementById("cake");
-  music.play();
 
 const openLetterButton = document.getElementById('openLetter');
 const letterModal = document.getElementById('letterModal');
@@ -25,6 +24,7 @@ window.addEventListener('click', (event) => {
 
 window.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById("intro");
+  const music = document.getElementById("music");
   const modal = document.getElementById("modal");
   const main = document.querySelector(".main");
   const nameInput = document.getElementById("nameInput");
@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const inputName = nameInput.value.trim().toUpperCase();
 
     if (inputName === "ENGGAR") {
-
+      music.play()
       intro.style.display = "none";
       modal.style.display = "flex";
       errorMsg.textContent = "";
