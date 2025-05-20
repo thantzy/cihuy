@@ -134,80 +134,258 @@ body {
 }
 
 /* Intro Screen */
+/* ==== Animated Background ==== */
 .intro-screen {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: radial-gradient(#000, #111);
+  background: linear-gradient(-45deg, #1e1e2f, #3e1f47, #1b1f3a, #0f0f1f);
+  background-size: 400% 400%;
+  animation: bgShift 15s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   z-index: 9999;
-  /* Tidak ada fade-out otomatis disini, hanya saat klik tombol */
+  overflow: hidden;
 }
 
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ==== Glassmorphism Card ==== */
 .intro-content {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(255, 112, 67, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 50px 35px;
   text-align: center;
+  animation: slideFadeIn 1.3s ease-out;
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  z-index: 2;
 }
 
-.intro-line {
-  font-size: 2.2em;
-  color: #fff;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: showLine 1s forwards;
-}
-
-@keyframes showLine {
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Error Message */
-.error-msg {
-  color: #ff6b6b;
-  margin-top: 10px;
+/* ==== Title with Typewriter ==== */
+.intro-line {
+  font-size: 2em;
   font-weight: bold;
-  animation: shake 0.3s ease;
-  visibility: hidden; /* Default is hidden */
-  opacity: 0; /* Default is invisible */
-  transition: opacity 0.5s ease;
+  color: #ffccbc;
+  border-right: 2px solid orange;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  margin-bottom: 25px;
+  animation: typingIntro 2.5s steps(30, end) forwards;
 }
 
-/* Styling for Input Field */
+@keyframes typingIntro {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ==== Input Field ==== */
 #nameInput {
-  padding: 10px 15px;
-  font-size: 1.2em;
-  width: 60%;
+  padding: 14px 18px;
+  font-size: 1.1em;
+  width: 100%;
   max-width: 300px;
-  margin-bottom: 20px;
-  border: 2px solid #ff7043;
-  border-radius: 8px;
-  background: #2c2c3d;
+  box-sizing: border-box;
+  margin: 0 auto 20px auto;
+  border: 2px solid rgba(255, 112, 67, 0.5);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
-  transition: border-color 0.3s ease;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+#nameInput::placeholder {
+  color: #bbb;
 }
 
 #nameInput:focus {
   border-color: #ffab91;
+  box-shadow: 0 0 10px rgba(255, 112, 67, 0.4);
   outline: none;
 }
 
-/* Start Button */
+/* ==== Start Button ==== */
 #startBtn {
-  padding: 12px 25px;
-  background: #ff7043;
+  padding: 14px 30px;
+  font-size: 1.1em;
+  background: linear-gradient(135deg, #ff7043, #ffab91);
   border: none;
-  border-radius: 8px;
-  font-size: 1.2em;
+  border-radius: 12px;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 0.25s ease;
+  box-shadow: 0 0 10px rgba(255, 112, 67, 0.3);
 }
 
 #startBtn:hover {
-  background: #ffab91;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 112, 67, 0.5);
+}
+
+/* ==== Error Message ==== */
+.error-msg {
+  color: #ff6b6b;
+  font-weight: bold;
+  visibility: hidden;
+  opacity: 0;
+  margin-top: 12px;
+  transition: opacity 0.5s ease;
+}
+
+/* ==== Floating Particles (Optional) ==== */
+.intro-screen::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url('https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/img/dots.png') repeat;
+  opacity: 0.04;
+  animation: floatBg 100s linear infinite;
+  z-index: 0;
+}
+
+@keyframes floatBg {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+#explosion-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ff7043;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 0.6s ease-out forwards;
+}
+
+@keyframes explode {
+  to {
+    transform: translate(var(--x), var(--y)) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Envelope Button */
+.envelope-container {
+  margin-top: 200px;
+  text-align: center;
+}
+
+.envelope {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(145deg, #ff7043, #ffab91);
+  color: white;
+  padding: 20px 35px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 0 8px 16px rgba(255, 112, 67, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+}
+
+.envelope-icon {
+  margin-right: 10px;
+  font-size: 1.4em;
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+  transform: translateY(-5px); /* Efek angkat tombol */
+  box-shadow: 0 15px 30px rgba(255, 112, 67, 0.8); /* Bayangan lebih dalam */
+  background: linear-gradient(145deg, #ffab91, #ff7043); /* Balikkan warna saat hover */
+}
+
+.envelope:hover .envelope-icon {
+  transform: rotate(20deg); /* Putar ikon saat hover */
+}
+
+/* Letter Modal */
+.letter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 20, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.letter-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.letter-content {
+  background: #2c2c3d;
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 0 25px #ffab91;
+}
+
+.letter-content h2 {
+  margin-top: 0;
+  color: #ffab91;
+}
+
+.letter-content p {
+  line-height: 1.6;
+}
+
+.close-letter {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-letter:hover {
+  color: #ff6b6b;
 }
