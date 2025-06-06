@@ -115,28 +115,11 @@ function launchConfetti() {
   setInterval(drawConfetti, 30);
 }
 
-// Animasi kue jatuh
-function dropCakePythonic() {
-  let y = -200;
-
-  function animate() {
-    y += 5;
-    cake.style.top = y + "px";
-
-    if (y < window.innerHeight / 2) {
-      requestAnimationFrame(animate);
-    }
-  }
-
-  animate();
-}
-
 // Mulai pesta
 btn.addEventListener("click", () => {
   modal.style.display = "none";
   main.classList.remove("hidden");
   launchConfetti();
-  dropCakePythonic();
 });
 
 // ==== LEDAKAN EFEK ====
