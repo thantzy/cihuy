@@ -13,7 +13,7 @@ body {
 .modal {
   position: fixed;
   width: auto;
-  height: 100%;
+  height: auto;
   background: rgba(15, 15, 30, 0.95);
   display: flex;
   justify-content: center;
