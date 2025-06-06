@@ -114,7 +114,7 @@ body {
 /* Cake Style */
 .cake {
   position: absolute;
-  top: -150px;
+  top: -100px;
   left: 50%;
   transform: translateX(-75%);
   font-size: 60px;
