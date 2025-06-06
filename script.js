@@ -117,7 +117,7 @@ function launchConfetti() {
 
 // Animasi kue jatuh
 function dropCakePythonic() {
-  let y = -100;
+  let y = -200;
 
   function animate() {
     y += 5;
