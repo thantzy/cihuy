@@ -116,7 +116,7 @@ body {
   position: absolute;
   top: -150px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-75%);
   font-size: 60px;
   opacity: 1;
   z-index: 10;
